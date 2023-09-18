@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Lista de Productos</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Titulo</th>
+    <th>Descripción</th>
+    <th>Valor</th>
+    <th>Precio</th>
+    <th>Stock</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= product.name %></td>
+      <td><%= product.description %></td>
+      <td><%= number_to_currency(product.cost) %></td>
+      <td><%= number_to_currency(product.price) %></td>
+      <td><%= product.stock %></td>
+      <td>
+        <%= link_to 'Ver', product %>
+        <%= link_to 'Editar', edit_product_path(product) %>
+        <%= link_to 'Eliminar', product, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nuevo Producto', new_product_path %>
