@@ -1,0 +1,31 @@
+<section id="users" class="section-p1">
+  <div class="container">
+    <div class="title"><h2>Lista de Usuarios</h2></div>
+  </div>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Telefono</th>
+    <th>Dirección</th>
+    <th>Cedula</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.phone %></td>
+      <td><%= user.address %></td>
+      <td><%= user.fiscal_number %></td>
+      <td>
+        <%= link_to 'Ver', user %>
+        <%= link_to 'Editar', edit_user_path(user) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</section>

@@ -1,0 +1,30 @@
+<section id="page-header">
+  <h2>A COMPRAR</h2>
+  <p>Disfruta de todos nuestros productos</p>
+</section>
+<section id="product1" class="section-p1">
+  <div class="product-container">
+        <% @products.each do |product| %>
+            <div class="product">
+                <% if product.image.attached? %>
+                  <%= image_tag product.image, class: 'product-image' %>
+                <% end %>
+              <%= link_to "Ver producto", show_user_product_path(product) %>
+              <div class="description">
+                <h5><%= product.name %></h5>
+                <h4><%= number_to_currency(product.price) %></h4>
+                    <%= form_with(model: product, url: add_to_cart_path(product), method: :post) do |form| %>
+                      <%= button_tag type: "submit" do %>
+                        <i class="fa-solid fa-cart-plus cart"></i>
+                      <% end %>
+                    <% end %>
+              </div>
+            </div>
+        <% end %>
+  </div>
+</section>
+<section id="pagination" class="section-p1">
+  <a href="#">1</a>
+  <a href="#">2</a>
+  <a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+</section>

@@ -1,0 +1,29 @@
+<h1>Detalles de la Orden <%=@order.id%></h1>
+
+<% if @order.status.present? %>
+  <%= form_for @order, url: update_status_order_path(@order), method: :patch do |f| %>
+    <div class="field">
+      <%= f.label :status %>
+      <%= f.select :status, Order.statuses.keys.map { |s| [s.humanize, s] }, prompt: 'Select Status' %>
+    </div>
+    <%= f.submit 'Update Status' %>
+  <% end %>
+<% else %>
+  <p>Status: Sin definir</p>
+<% end %>
+
+<p>Nombre del Cliente: <%= @order.customer_name %></p>
+<p>Dirección de Entrega: <%= @order.address %></p>
+<p>Teléfono de Contacto: <%= @order.phone %></p>
+
+<h2>Productos en la Orden</h2>
+
+<% @order.order_items.each do |order_item| %>
+  <p>
+    Producto: <%= order_item.product.name %>
+    Cantidad: <%= order_item.quantity %>
+    Precio unitario: <%= number_to_currency(order_item.price) %>
+    Total: <%= number_to_currency(order_item.total) %>
+  </p>
+<% end %>
+<p>Total de la Orden: <%= number_to_currency(@order.total_amount) %></p>

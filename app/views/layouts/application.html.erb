@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
     <%= stylesheet_link_tag 'style.css' %>
     <script src="https://kit.fontawesome.com/c494c725de.js" crossorigin="anonymous"></script>
   </head>
@@ -18,18 +17,20 @@
       <a href="#"> <img src="/assets/logoxs.png" class="logo"></a>
       <div>
         <ul id="navbar">
-          <li><a class="active" href="index.html">Inicio</a></li>
-          <li><a href="shop.html">Tienda</a></li>
-          <li><%= link_to "Productos", products_path %></li>
-          <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
-          <li><a href="rank.html">Valoración</a></li>
-          <li><a href="admin.html">Admin</a></li>
+          <li><%= link_to "Inicio", root_path %></li>
+          <li><%= link_to "Tienda", products_shop_path%></li>
           <li><% if user_signed_in? %> <!-- Verifica si el usuario ha iniciado sesión -->
-            <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
+            <li><%= link_to "Carrito", carts_show_path%></li>
+            <li><%= link_to "Ordenes", orders_path%></li>
+            <li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %></li>
+               <% if @user && @user.admin?%>
+              <li><%= link_to 'Administrador', admin_panel_path %></li>
+        <% else %>
+              <!-- Código para otros usuarios o cuando @user es nil -->
+               <% end %>
           <% else %>
             <%= link_to "Iniciar sesión", new_user_session_path %>
           <% end %></li>
-          <li><%= link_to "Registarse", new_user_registration_path %></li>
         </ul>
       </div>
     </section>
@@ -46,9 +47,5 @@
         <p>© 2023, Andres Felipe Sánchez Galindo - Tiendas de barrio virtuales</p>
       </div>
     </footer>
-
-    <script src="script.js"></script>
-
-
   </body>
 </html>

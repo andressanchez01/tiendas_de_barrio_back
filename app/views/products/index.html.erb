@@ -1,22 +1,27 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Lista de Productos</h1>
-
-<table>
+<section id="products" class="section-p1">
+  <div class="container">
+    <div class="title"><h2>Listado de productos</h2></div>
+    <div class="button">
+      <button type="button" class="btn btn-secondary" ><%= link_to 'Nuevo Producto', new_product_path %></button>
+    </div>
+  </div>
+<table width="100%">
   <thead>
   <tr>
+    <th>Imagen</th>
     <th>Id</th>
     <th>Titulo</th>
     <th>Descripción</th>
     <th>Valor</th>
     <th>Precio</th>
-    <th>Stock</th>
+    <th>Cantidad</th>
     <th>Acciones</th>
   </tr>
   </thead>
   <tbody>
   <% @products.each do |product| %>
     <tr>
+      <td><%= image_tag product.image if product.image.attached? %></td>
       <td><%= product.id %></td>
       <td><%= product.name %></td>
       <td><%= product.description %></td>
@@ -32,5 +37,4 @@
   <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Nuevo Producto', new_product_path %>
+</section>

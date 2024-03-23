@@ -1,10 +1,20 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!,:set_product, only: [:show, :edit, :update, :destroy]
   def index
     @products = Product.all
   end
+  def shop
+    @products = Product.all
+  end
   def show
+    @product = Product.find(params[:id])
+    @cart = current_cart
+  end
+
+  def show_user
+    @product = Product.find(params[:id])
+    @cart = current_cart
   end
   def new
     @product = Product.new
@@ -30,12 +40,14 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to products_url, notice: 'Producto eliminado exitosamente.'
   end
+
   private
   def set_product
     @product = Product.find(params[:id])
   end
   def product_params
-    params.require(:product).permit(:name,:description,:stock,:cost,:price,:rank,:idCategory,:idProduct)
+    params.require(:product).permit(:name,:description,:stock,:cost,:price,:rank,:idCategory,:idProduct,:image)
   end
+
 
 end

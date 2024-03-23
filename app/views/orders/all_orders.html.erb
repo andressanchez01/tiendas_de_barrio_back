@@ -1,0 +1,12 @@
+<h1>Todas las Órdenes</h1>
+
+<% @orders.each do |order| %>
+  <div>
+    <p>Nombre del Cliente: <%= order.customer_name %></p>
+    <p>Dirección de Entrega: <%= order.address %></p>
+    <p>Teléfono de Contacto: <%= order.phone %></p>
+    <%= link_to "Ver orden", order_path(order) %>
+    <!-- Puedes agregar más detalles según tus necesidades -->
+  </div>
+  <hr>
+<% end %>

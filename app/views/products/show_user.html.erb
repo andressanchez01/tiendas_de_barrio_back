@@ -1,0 +1,21 @@
+<section id="product-details" class="section-p1">
+  <div class="single-product-image">
+    <% if @product.image.attached? %>
+      <%= image_tag @product.image %>
+    <% end %>
+  </div>
+  <div class="single-product-details">
+    <h4><%= @product.name %></h4>
+    <h2> <%= number_to_currency(@product.price) %></h2>
+    <%= form_with(model: @product, url: add_to_cart_path(@product), method: :post) do |form| %>
+      <%= button_tag type: "submit" do %>
+        <i class="fa-solid fa-cart-plus cart">Agregar al carrito</i>
+      <% end %>
+    <% end %>
+    <h4>Detalles del Producto</h4>
+    <span><%= @product.description %></span>
+  </div>
+</section>
+<button class="normal">
+  <%= link_to "Continuar Comprando", products_shop_path %>
+</button>

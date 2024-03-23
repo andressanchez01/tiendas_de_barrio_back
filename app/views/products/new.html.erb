@@ -26,9 +26,16 @@
     <%= f.number_field :stock %>
   </div>
 
+  <div class="field">
+    <%= f.label :image, "Imagen del Producto" %>
+    <%= f.file_field :image %>
+  </div>
+
   <div class="actions">
     <%= f.submit 'Crear Producto' %>
   </div>
+
+
 <% end %>
 
 <%= link_to 'Volver a la Lista', products_path %>

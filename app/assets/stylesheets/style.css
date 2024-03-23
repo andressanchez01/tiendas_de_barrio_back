@@ -499,6 +499,9 @@ button {
     text-align: center;
 }
 
+#login .field{
+    text-align: center;
+}
 /* signup page*/
 
 #signup{
@@ -561,7 +564,9 @@ button {
     text-align: center;
 }
 
-
+#signup .field, .actions{
+    text-align: center;
+}
 /* rating page*/
 
 #rating{

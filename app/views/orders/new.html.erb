@@ -1,0 +1,22 @@
+<h1>Nueva Orden</h1>
+
+<%= form_with(model: @order, url: orders_path, method: :post) do |form| %>
+  <h2>Datos del Cliente:</h2>
+  <p><strong>Id del Cliente:</strong> <%= @order.user_id %></p>
+  <p><strong>Nombre del Cliente:</strong> <%= @order.customer_name %></p>
+  <p><strong>Dirección de Envío:</strong> <%= @order.address %></p>
+  <p><strong>Telefono:</strong> <%= @order.phone %></p>
+
+  <h2>Productos en el Carrito:</h2>
+  <ul>
+    <% @cart_items.each do |cart_item| %>
+      <li><%= cart_item.product.name %> - Cantidad: <%= cart_item.quantity %> - Precio: <%= number_to_currency(cart_item.product.price) %> </li>
+    <% end %>
+  </ul>
+
+  <p>Total: <%= number_to_currency(@total) %></p>
+
+  <div class="actions">
+    <%= form.submit "Crear Pedido" %>
+  </div>
+<% end %>
