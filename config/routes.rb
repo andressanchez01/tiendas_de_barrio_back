@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'welcome#index'
   get 'carts/show'
   get 'carts/update_quantity'
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
   get 'carts/checkout'
   get 'welcome/index'
   get '/products/shop', to: 'products#shop', as: 'products_shop'
-  devise_for :users , controllers: { registrations: 'users/registrations', sessions: 'users/sessions/sessions' }
+  #devise_for :users , controllers: { registrations: 'users/registrations', sessions: 'users/sessions/sessions' }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
@@ -31,7 +32,6 @@ Rails.application.routes.draw do
     end
   end
   get '/all_orders', to: 'orders#all_orders', as: 'all_orders'
-
   resources :users
   get '/admin_panel', to: 'admin#panel', as: 'admin_panel'
 end

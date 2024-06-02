@@ -6,7 +6,7 @@
       <%= f.label :status %>
       <%= f.select :status, Order.statuses.keys.map { |s| [s.humanize, s] }, prompt: 'Select Status' %>
     </div>
-    <%= f.submit 'Update Status' %>
+    <%= f.submit 'Actualizar estado del pedido' %>
   <% end %>
 <% else %>
   <p>Status: Sin definir</p>

@@ -13,11 +13,13 @@
               <div class="description">
                 <h5><%= product.name %></h5>
                 <h4><%= number_to_currency(product.price) %></h4>
+                   <% if @user&.role == "user" %>
                     <%= form_with(model: product, url: add_to_cart_path(product), method: :post) do |form| %>
-                      <%= button_tag type: "submit" do %>
+                    <%= button_tag type: "submit" do %>
                         <i class="fa-solid fa-cart-plus cart"></i>
                       <% end %>
                     <% end %>
+                  <% end %>
               </div>
             </div>
         <% end %>

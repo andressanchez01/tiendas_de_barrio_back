@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
   def shop
+    @user = current_user
     @products = Product.all
   end
   def show
@@ -13,6 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def show_user
+    @user = current_user
     @product = Product.find(params[:id])
     @cart = current_cart
   end

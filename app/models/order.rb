@@ -8,5 +8,5 @@ class Order < ApplicationRecord
     self.total_amount = order_items.sum(&:total)
   end
 
-  enum status: { pending: 'pending', in_progress: 'in_progress', completed: 'completed' }
+  enum status: { pending: 'pending', in_progress: 'in progress', completed: 'completed', canceled:'canceled' }
 end

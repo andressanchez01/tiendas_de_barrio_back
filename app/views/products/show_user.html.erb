@@ -7,9 +7,11 @@
   <div class="single-product-details">
     <h4><%= @product.name %></h4>
     <h2> <%= number_to_currency(@product.price) %></h2>
-    <%= form_with(model: @product, url: add_to_cart_path(@product), method: :post) do |form| %>
-      <%= button_tag type: "submit" do %>
-        <i class="fa-solid fa-cart-plus cart">Agregar al carrito</i>
+    <% if @user&.role == "user" %>
+      <%= form_with(model: @product, url: add_to_cart_path(@product), method: :post) do |form| %>
+        <%= button_tag type: "submit" do %>
+          <i class="fa-solid fa-cart-plus cart">Agregar al carrito</i>
+        <% end %>
       <% end %>
     <% end %>
     <h4>Detalles del Producto</h4>

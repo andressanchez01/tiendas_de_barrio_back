@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_user.orders.find(params[:id])
+    @order = Order.find(params[:id])
     @order_items = @order.order_items.includes(:product)
   end
 

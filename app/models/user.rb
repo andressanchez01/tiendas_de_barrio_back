@@ -1,9 +1,12 @@
 class User < ApplicationRecord
-  before_validation :set_default_role, on: :create
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :confirmable
+  before_validation :set_default_role, on: :create
+
   has_one :cart
   has_many :orders
 
@@ -13,10 +16,7 @@ class User < ApplicationRecord
   def admin?
     role == 'admin'
   end
-
-
   private
-
   def set_default_role
     self.role ||= :user if role.nil?
   end
