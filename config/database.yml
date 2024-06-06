@@ -21,5 +21,5 @@ production:
   url: <%= ENV['DATABASE_URL'] %>
   database: <%= ENV['PGDATABASE'] %>
   username: <%= ENV['PGUSER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  password: <%= ENV['PGPASSWORD'] %>
   host: <%= ENV['PGHOST'] %>
