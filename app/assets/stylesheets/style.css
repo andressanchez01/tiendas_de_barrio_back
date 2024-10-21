@@ -92,7 +92,7 @@ body{
 /*Home */
 
 #hero{
-    background-image: url("/assets/hero.jpg");
+    background-image: url("/assets/hero1.jpg");
     height: 90vh;
     width: 100%;
     background-size: cover;
@@ -104,11 +104,21 @@ body{
     justify-content: center;
 }
 #hero h4{
+    color: white;
     padding-bottom: 15px;
+}
+#hero h2{
+    color: white;
+}
+#hero h1{
+    color: white;
+}
+#hero p{
+    color: white;
 }
 #hero button {
     padding: 10px 20px;
-    background-color: #088178;
+    background-color: #859091;
     color: white;
     border: none;
     border-radius: 5px;

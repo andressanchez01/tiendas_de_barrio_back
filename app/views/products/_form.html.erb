@@ -11,7 +11,44 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>
+
+<%= form_for @product do |f| %>
+  <div class="field">
+    <%= f.label :name, 'Titulo' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, 'Descripción' %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price, 'Valor' %>
+    <%= f.number_field :cost %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price, 'Precio' %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price, 'Cantidad' %>
+    <%= f.number_field :stock %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "Imagen del Producto" %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit button_text %>
+  </div>
+
+
+<% end %>
+
+<%= link_to 'Volver a la Lista', products_path %>

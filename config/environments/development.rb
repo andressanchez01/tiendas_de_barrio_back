@@ -1,80 +1,30 @@
-require "active_support/core_ext/integer/time"
-
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-  config.hosts << "tiendasdebarrioback-production.up.railway.app"
-  # In the development environment your application's code is reloaded any time
-  # it changes. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
+  # Recarga el código automáticamente en cada solicitud.
   config.cache_classes = false
 
-  # Do not eager load code on boot.
+  # No carga el código cuando la aplicación se inicia.
   config.eager_load = false
 
-  # Show full error reports.
+  # Mostrar errores completos.
   config.consider_all_requests_local = true
 
-  # Enable server timing
-  config.server_timing = true
+  # Configuración para la acción de envío de correo en desarrollo (se usa Letter Opener o similar para desarrollo local)
+  config.action_mailer.raise_delivery_errors = false
 
-  # Enable/disable caching. By default caching is disabled.
-  # Run rails dev:cache to toggle caching.
-  if Rails.root.join("tmp/caching-dev.txt").exist?
-    config.action_controller.perform_caching = true
-    config.action_controller.enable_fragment_cache_logging = true
+  # En lugar de enviar correos electrónicos, abrimos una previsualización en el navegador
+  config.action_mailer.delivery_method = :letter_opener
 
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
+  # Configurar la URL base para los correos electrónicos (debe coincidir con el host local)
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-    config.cache_store = :null_store
-  end
-
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
-
-  # Don't care if the mailer can't send.
-  #config.action_mailer.raise_delivery_errors = false
-
-  #config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'tiendasdebarrioback-production.up.railway.app' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'gmail.com',
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD'],
-    authentication: 'plain',
-    enable_starttls_auto: true
-  }
-  # Print deprecation notices to the Rails logger.
+  # Deprecaciones en la consola de Rails
   config.active_support.deprecation = :log
 
-  # Raise exceptions for disallowed deprecations.
-  config.active_support.disallowed_deprecation = :raise
+  # Usar un servidor de archivos locales para el almacenamiento de archivos
+  config.active_storage.service = :local
 
-  # Tell Active Support which deprecation messages to disallow.
-  config.active_support.disallowed_deprecation_warnings = []
+  # Permitir el uso de web-console y otros depuradores locales.
+  config.web_console.whitelisted_ips = '127.0.0.1'
 
-  # Raise an error on page load if there are pending migrations.
-  config.active_record.migration_error = :page_load
-
-  # Highlight code that triggered database queries in logs.
-  config.active_record.verbose_query_logs = true
-
-  # Suppress logger output for asset requests.
-  config.assets.quiet = true
-
-  # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
-
-  # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
-
-  # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
+  # Otras configuraciones...
 end

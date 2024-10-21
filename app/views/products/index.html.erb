@@ -2,7 +2,7 @@
   <div class="container">
     <div class="title"><h2>Listado de productos</h2></div>
     <div class="button">
-      <button type="button" class="btn btn-secondary" ><%= link_to 'Nuevo Producto', new_product_path %></button>
+      <%= link_to 'Nuevo Producto', new_product_path, class: "btn btn-warning mx-1" %>
     </div>
   </div>
 <table width="100%">
@@ -29,9 +29,9 @@
       <td><%= number_to_currency(product.price) %></td>
       <td><%= product.stock %></td>
       <td>
-        <%= link_to 'Ver', product %>
-        <%= link_to 'Editar', edit_product_path(product) %>
-        <%= link_to 'Eliminar', product, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+        <%= link_to 'Ver', product , class: "btn btn-info mx-1"%>
+        <%= link_to 'Editar', edit_product_path(product), class: "btn btn-primary mx-1" %>
+        <%= button_to "Eliminar", product, method: :delete, class: "btn bg-danger bg-gradient" %>
       </td>
     </tr>
   <% end %>

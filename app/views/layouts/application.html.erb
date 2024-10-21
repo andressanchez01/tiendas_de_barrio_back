@@ -14,7 +14,7 @@
 
   <body>
     <section id="header">
-      <a href="#"> <img src="/assets/logoxs.png" class="logo"></a>
+      <a href=""> <%= image_tag "logo-as.jpeg", height: 50 %></a>
       <div>
         <ul id="navbar">
           <li><%= link_to "Inicio", root_path %></li>
@@ -34,17 +34,27 @@
         </ul>
       </div>
     </section>
+    <% if notice %>
+      <div class="alert alert-success">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-danger">
+        <%= alert %>
+      </div>
+    <% end %>
     <%= yield %>
     <footer class="section-p1">
       <div class="col">
-        <img class="logo" src="/assets/logoxs.png" alt="">
+        <a href="" class="logo"> <%= image_tag "logo-as.jpeg", height: 50 %></a>
         <h4>Contacto</h4>
-        <p><strong>Dicección:</strong>Calle 72 # 50-30, Bogotá</p>
+        <p><strong>Dicección:</strong>Carrera 69 # 70A - 25, Bogotá</p>
         <p><strong>Telefono:</strong>+57 3227979809</p>
-        <p><strong>Horario:</strong>Lunes a Domingo, 8:00 am - 10:00 pm</p>
+        <p><strong>Horario:</strong>Lunes a Viernes, 8:00 am - 5:00 pm</p>
       </div>
       <div class="copyright">
-        <p>© 2023, Andres Felipe Sánchez Galindo - Tiendas de barrio virtuales</p>
+        <p>© 2024, Andres Felipe Sánchez Galindo - ASTRONIX DIGITAL</p>
       </div>
     </footer>
   </body>
