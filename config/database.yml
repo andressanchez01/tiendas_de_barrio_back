@@ -8,9 +8,9 @@ default: &default
 development:
   <<: *default
   database: ecommerce
-  username: postgres
-  password: 01240904
-  host: localhost
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
 
 test:
   <<: *default
@@ -18,9 +18,9 @@ test:
   encoding: unicode
   database: ecommerce_test
   pool: 5
-  username: postgres
-  password: 01240904
-  host: 127.0.0.1
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
   port: 5432
 
 production:
