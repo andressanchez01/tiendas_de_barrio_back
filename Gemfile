@@ -67,6 +67,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "annotate"
 end
 
 group :test do
@@ -76,6 +77,10 @@ group :test do
 
 end
 
-gem "bootstrap", "~> 5.3"
+gem "tailwindcss-rails"
 
 gem 'sassc-rails'
+
+gem 'friendly_id'
+
+gem 'will_paginate'

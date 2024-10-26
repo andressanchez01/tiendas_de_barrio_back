@@ -1,21 +1,20 @@
 class ProductsController < ApplicationController
 
-  before_action :authenticate_user!,:set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!,:set_product, only: [:show, :edit, :update, :destroy, :show_user]
   def index
     @products = Product.all
   end
   def shop
     @user = current_user
-    @products = Product.all
+    current_page = params[:page] ||= 1
+    @products = Product.where(visible:true).order('id DESC').paginate(page:current_page, per_page:10)
   end
   def show
-    @product = Product.find(params[:id])
     @cart = current_cart
   end
 
   def show_user
     @user = current_user
-    @product = Product.find(params[:id])
     @cart = current_cart
   end
   def new
@@ -57,9 +56,15 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    @q = params[:q]
+    @products = Product.where("name LIKE ?", "%#{@q}%").where(visible: true)
+  end
+
   private
   def set_product
-    @product = Product.find(params[:id])
+    #@product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
     redirect_to product_url, notice: e.message
   end
