@@ -69,7 +69,7 @@ class ProductsController < ApplicationController
     redirect_to product_url, notice: e.message
   end
   def product_params
-    params.require(:product).permit(:name,:description,:stock,:cost,:price,:rank,:idCategory,:idProduct,:image)
+    params.require(:product).permit(:name,:description,:stock,:cost,:price,:rank,:idProduct,:image,category_ids: [])
   end
 
 
