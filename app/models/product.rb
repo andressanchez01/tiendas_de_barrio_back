@@ -32,6 +32,7 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :categories
 
+  has_many :comments, -> { order(created_at: :desc) }
   def category_default
     return self.categories.first.name if self.categories.any?
     "Sin categoria"
