@@ -84,3 +84,5 @@ gem 'sassc-rails'
 gem 'friendly_id'
 
 gem 'will_paginate'
+
+gem 'ostruct'

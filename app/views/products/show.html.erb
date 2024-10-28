@@ -37,6 +37,15 @@
 </section>
 
 <section>
+  <div class="mb-4">
+    <%= form_with model:[@product, Vote.new] do |form| %>
+      <%= form.submit "Votar 👍" , class:"cursor-pointer block lg:inline-block px-5 py-3 text-sm text-center font-semibold text-red-500 hover:text-white hover:bg-red-500 border border-red-500 hover:border-red-600 rounded transition duration-200"%>
+    <% end %>
+  </div>
+  <small>Votos: <%= @product.votes.count %></small>
+</section>
+
+<section>
   <div class="mb-4 mt-4">
     <%= render partial:'comments/form' %>
   </div>

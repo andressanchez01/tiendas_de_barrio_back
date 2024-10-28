@@ -8,7 +8,7 @@
 #  stock       :integer
 #  price       :decimal(, )
 #  rank        :integer
-#  idCategory  :integer
+#  category_id :integer
 #  idProduct   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -27,14 +27,26 @@ class Product < ApplicationRecord
   has_one_attached :image
   has_many :cart_items
 
-  has_many :product_categories
+  has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
 
   accepts_nested_attributes_for :categories
 
-  has_many :comments, -> { order(created_at: :desc) }
+  has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
+
+  has_many :votes, as: :votable
+
+  scope :visible, -> {where(visible:true)}
   def category_default
     return self.categories.first.name if self.categories.any?
     "Sin categoria"
   end
+
+  def self.populars
+    joins("LEFT JOIN votes ON votes.votable_id = products.id AND votes.votable_type = 'Product'")
+      .select("products.*, COUNT(votes.id) AS total")
+      .group("products.id")
+      .order("total DESC")
+  end
+
 end

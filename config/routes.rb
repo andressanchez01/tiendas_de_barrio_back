@@ -20,7 +20,10 @@ Rails.application.routes.draw do
     post 'add_to_cart', on: :member
     get 'show_user', on: :member
     get 'search', on: :collection
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy] do
+      resources :votes, only: [:create]
+    end
+    resources :votes, only: [:create]
   end
   resources :carts do
     member do

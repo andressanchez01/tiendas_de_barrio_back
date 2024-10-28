@@ -8,7 +8,7 @@
 #  stock       :integer
 #  price       :decimal(, )
 #  rank        :integer
-#  idCategory  :integer
+#  category_id :integer
 #  idProduct   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
