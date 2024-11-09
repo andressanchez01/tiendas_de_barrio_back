@@ -1,35 +1,27 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: root
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
+  username: <%= ENV['DB_USERNAME'] %>
+  password: '01240904.'
+  host: <%= ENV['DB_HOST'] %>
 
 development:
   <<: *default
-  database: ecommerce
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  host: <%= ENV['DB_HOST'] %>
+  database: <%= ENV['DB_NAME'] %>
 
 test:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
-  database: ecommerce_test
-  pool: 5
+  database: astronix_test
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
   host: <%= ENV['DB_HOST'] %>
-  port: 5432
 
 production:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= ENV['DATABASE_URL'] %>
-  database: <%= ENV['PGDATABASE'] %>
-  username: <%= ENV['PGUSER'] %>
-  password: <%= ENV['PGPASSWORD'] %>
-  host: <%= ENV['PGHOST'] %>
+  database: astronix_production
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  pool: 5
+  timeout: 5000

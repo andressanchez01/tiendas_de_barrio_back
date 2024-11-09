@@ -86,3 +86,5 @@ gem 'friendly_id'
 gem 'will_paginate'
 
 gem 'ostruct'
+
+gem 'sidekiq'
