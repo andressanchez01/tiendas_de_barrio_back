@@ -28,6 +28,7 @@ class OrdersController < ApplicationController
         order_item = @order.order_items.create(product: cart_item.product, quantity: cart_item.quantity, price: cart_item.product.price)
         order_item.calculate_total
         order_item.save
+        OrderConfirmationEmailJob.perform_later(@order)
       end
       current_user.cart.cart_items.destroy_all
       redirect_to @order, notice: 'La orden se creó exitosamente.'

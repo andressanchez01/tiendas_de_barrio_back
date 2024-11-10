@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      SendConfirmationEmailJob.perform_later(@user)
       redirect_to @user, notice: 'User was successfully created.'
     else
       render :new

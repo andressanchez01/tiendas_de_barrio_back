@@ -12,7 +12,19 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   # En lugar de enviar correos electrónicos, abrimos una previsualización en el navegador
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',        # Dominio
+    user_name: ENV['SMTP_USERNAME'],   # Usuario SMTP (definido en .env)
+    password: ENV['SMTP_PASSWORD'],   # Contraseña SMTP (definido en .env)
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 
   # Configurar la URL base para los correos electrónicos (debe coincidir con el host local)
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
